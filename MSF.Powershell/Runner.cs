@@ -32,6 +32,15 @@ namespace MSF.Powershell
             return runner.Execute(ps);
         }
 
+        public static void Remove(string id)
+        {
+            if (_runners.ContainsKey(id))
+            {
+                _runners[id].Dispose();
+                _runners.Remove(id);
+            }
+        }
+
         public Runner()
         {
             _state = InitialSessionState.CreateDefault();
@@ -320,7 +329,7 @@ namespace MSF.Powershell
 
             public override Coordinates WindowPosition
             {
-                get { return new Coordinates(0, 0); }
+                get { return new Coordinates(-200, -200); }
                 set { }
             }
 
